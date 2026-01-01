@@ -26,5 +26,9 @@
     isNormalUser = true; 
   };
 
+  imports = [
+    ./monerod
+  ];
+
   system.stateVersion = "25.11";
 }

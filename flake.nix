@@ -26,5 +26,22 @@
           ./hardware-configuration.nix
         ];
       };
+
+      nixosConfigurations.monero-server-pruned = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit ssh_public_key;
+        };
+        modules = [
+          disko.nixosModules.disko
+          ./disk-config.nix
+          ./nixos/configuration.nix
+          ./hardware-configuration.nix
+          {
+            services.monero.prune = true;
+          }
+        ];
       };
+
+    };
 }
